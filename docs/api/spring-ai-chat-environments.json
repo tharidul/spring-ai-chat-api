@@ -1,0 +1,66 @@
+{
+  "name": "SPRING-AI-CHAT",
+  "variables": [
+    {
+      "name": "baseUrl",
+      "value": "http://localhost:8081/api/v1",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "auth",
+      "value": "/auth",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "chat",
+      "value": "/chat",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "accessToken",
+      "value": "",
+      "type": "text",
+      "enabled": true,
+      "secret": true
+    },
+    {
+      "name": "refreshToken",
+      "value": "",
+      "type": "text",
+      "enabled": true,
+      "secret": true
+    },
+    {
+      "name": "sessionId",
+      "value": "",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "agentId",
+      "value": "",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "agents",
+      "value": "/agents",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    }
+  ],
+  "info": {
+    "type": "bruno-environment",
+    "exportedAt": "2026-06-11T17:01:03.608Z",
+    "exportedUsing": "Bruno/v3.4.2"
+  }
+}

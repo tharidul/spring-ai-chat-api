@@ -1,0 +1,573 @@
+{
+  "info": {
+    "name": "Spring AI Chat API",
+    "description": "Spring AI Chat REST API collection - Authentication, Agents, and Chat endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "item": [
+            {
+              "name": "REGISTER",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "noauth"
+                },
+                "description": "Register a new user with email, password, and name.",
+                "url": {
+                  "raw": "{{baseUrl}}{{auth}}/register",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{auth}}"
+                  ],
+                  "path": [
+                    "register"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"Test1234!\",\n  \"confirmPassword\": \"Test1234!\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "item": [
+            {
+              "name": "LOGIN",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "noauth"
+                },
+                "description": "Login with email and password. Returns access and refresh tokens.",
+                "url": {
+                  "raw": "{{baseUrl}}{{auth}}/login",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{auth}}"
+                  ],
+                  "path": [
+                    "login"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"Test1234!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Agents",
+      "item": [
+        {
+          "name": "Create Agent",
+          "item": [
+            {
+              "name": "CREATE_AGENT",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Create a new AI agent with a custom system prompt, temperature, and name.",
+                "url": {
+                  "raw": "{{baseUrl}}{{agents}}",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{agents}}"
+                  ],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Code Reviewer\",\n  \"description\": \"An AI agent specialized in reviewing code and suggesting improvements.\",\n  \"systemPrompt\": \"You are an expert code reviewer. Analyze code for bugs, performance issues, security vulnerabilities, and readability. Provide clear, actionable suggestions.\",\n  \"temperature\": 0.3,\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Agents",
+          "item": [
+            {
+              "name": "GET_ALL_AGENTS",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Get all AI agents.",
+                "url": {
+                  "raw": "{{baseUrl}}{{agents}}",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{agents}}"
+                  ],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "GET_AGENT_BY_ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Get a specific AI agent by ID.",
+                "url": {
+                  "raw": "{{baseUrl}}{{agents}}/{{agentId}}",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{agents}}"
+                  ],
+                  "path": [
+                    "{{agentId}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Agent",
+          "item": [
+            {
+              "name": "UPDATE_AGENT",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Update an existing AI agent's configuration.",
+                "url": {
+                  "raw": "{{baseUrl}}{{agents}}/{{agentId}}",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{agents}}"
+                  ],
+                  "path": [
+                    "{{agentId}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Code Reviewer Pro\",\n  \"description\": \"An advanced AI agent for code review with security focus.\",\n  \"systemPrompt\": \"You are a senior code reviewer with expertise in security. Focus on OWASP top 10, input validation, and secure coding practices. Be thorough but concise.\",\n  \"temperature\": 0.2,\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Delete Agent",
+          "item": [
+            {
+              "name": "DELETE_AGENT",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Delete an AI agent.",
+                "url": {
+                  "raw": "{{baseUrl}}{{agents}}/{{agentId}}",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{agents}}"
+                  ],
+                  "path": [
+                    "{{agentId}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Sessions",
+          "item": [
+            {
+              "name": "START_SESSION_WITH_AGENT",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Start a new chat session with a specific agent by sending the first message. Pass agentId to choose the agent.",
+                "url": {
+                  "raw": "{{baseUrl}}{{chat}}/sessions",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{chat}}"
+                  ],
+                  "path": [
+                    "sessions"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello! What can you help me with?\",\n  \"agentId\": \"{{agentId}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "START_SESSION_DEFAULT_AGENT",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Start a new chat session without specifying an agent. Uses the default enabled agent.",
+                "url": {
+                  "raw": "{{baseUrl}}{{chat}}/sessions",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{chat}}"
+                  ],
+                  "path": [
+                    "sessions"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello! What can you help me with?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "GET_ALL_SESSIONS",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Get all chat sessions for the authenticated user, ordered by most recently updated.",
+                "url": {
+                  "raw": "{{baseUrl}}{{chat}}/sessions",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{chat}}"
+                  ],
+                  "path": [
+                    "sessions"
+                  ],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "DELETE_SESSION",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Delete a chat session and all its messages. Only the session owner can delete it.",
+                "url": {
+                  "raw": "{{baseUrl}}{{chat}}/sessions/{{sessionId}}",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{chat}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "{{sessionId}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Messages",
+          "item": [
+            {
+              "name": "SEND_MESSAGE",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Send a message to an existing chat session. The AI responds with conversation context from previous messages.",
+                "url": {
+                  "raw": "{{baseUrl}}{{chat}}/sessions/{{sessionId}}/messages",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{chat}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "{{sessionId}}",
+                    "messages"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Tell me about Spring Boot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "GET_SESSION_MESSAGES",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "auth": {
+                  "type": "bearer",
+                  "bearer": {
+                    "key": "token",
+                    "value": "{{accessToken}}",
+                    "type": "string"
+                  }
+                },
+                "description": "Get the full message history for a chat session, ordered by creation time (oldest first).",
+                "url": {
+                  "raw": "{{baseUrl}}{{chat}}/sessions/{{sessionId}}/messages",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}{{chat}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "{{sessionId}}",
+                    "messages"
+                  ],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081/api/v1",
+      "type": "default"
+    },
+    {
+      "key": "auth",
+      "value": "/auth",
+      "type": "default"
+    },
+    {
+      "key": "agents",
+      "value": "/agents",
+      "type": "default"
+    },
+    {
+      "key": "chat",
+      "value": "/chat",
+      "type": "default"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "sessionId",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "agentId",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
